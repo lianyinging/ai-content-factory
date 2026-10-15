@@ -1,0 +1,11 @@
+{
+  "version": "0.1.1",
+  "notes": "修复更新检查与打包；请按需修改本文件后上传为 latest.json。",
+  "publishedAt": "2026-10-15",
+  "pageUrl": "https://team-swarm-oss.oss-cn-shanghai.aliyuncs.com/ai_content/releases/",
+  "downloads": {
+    "darwin-aarch64": "https://team-swarm-oss.oss-cn-shanghai.aliyuncs.com/ai_content/releases/0.1.1/AI内容工厂_0.1.1_aarch64.dmg",
+    "darwin-x86_64": "https://team-swarm-oss.oss-cn-shanghai.aliyuncs.com/ai_content/releases/0.1.1/AI内容工厂_0.1.1_x64.dmg",
+    "windows-x86_64": "https://team-swarm-oss.oss-cn-shanghai.aliyuncs.com/ai_content/releases/0.1.1/AI内容工厂_0.1.1_x64-setup.exe"
+  }
+}

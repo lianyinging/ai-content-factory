@@ -9,8 +9,10 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "fetch-node": "node scripts/fetch-node-sidecar.mjs",
+    "fetch-model": "node scripts/fetch-embedding-model.mjs",
+    "deref-resources": "node scripts/deref-resource-symlinks.mjs",
     "tauri:dev": "npm run fetch-node && tauri dev",
-    "tauri:build": "npm run fetch-node && tauri build"
+    "tauri:build": "npm run fetch-node && npm run deref-resources && tauri build"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",

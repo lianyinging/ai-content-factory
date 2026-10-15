@@ -1,0 +1,2 @@
+# 如已安装 git-lfs，可对大权重启用（可选）：
+# resources/model/**/*.safetensors filter=lfs diff=lfs merge=lfs -text

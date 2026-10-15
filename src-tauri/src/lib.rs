@@ -12,6 +12,7 @@ mod llm;
 mod media_cache;
 mod node_jobs;
 mod products;
+mod system_info;
 
 use catbus::CatbusState;
 use tauri::Manager;
@@ -160,6 +161,8 @@ pub fn run() {
             browser_cdp::probe_xhs_custom_reply,
             browser_cdp::xhs_acq_run,
             browser_cdp::xhs_acq_force_idle,
+            system_info::get_system_info,
+            system_info::check_app_update,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
