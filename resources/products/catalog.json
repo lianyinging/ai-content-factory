@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "products": [
+    {
+      "id": "2605110011",
+      "sku": "2605110011",
+      "name": "糖果多巴胺耳饰",
+      "spec": "银镀金镶嵌水晶",
+      "description": "",
+      "category": "设计师系列-耳饰",
+      "unit": "",
+      "image": "images/2605110011.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2604020003",
+      "sku": "2604020003",
+      "name": "蝴蝶结丝带耳环",
+      "spec": "银镀金镶嵌锆石、珍珠",
+      "description": "",
+      "category": "设计师系列-耳饰",
+      "unit": "对",
+      "image": "images/2604020003.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2604020002",
+      "sku": "2604020002",
+      "name": "麦穗",
+      "spec": "银镀金镶嵌锆石、蛋白石",
+      "description": "",
+      "category": "设计师系列-耳饰",
+      "unit": "",
+      "image": "images/2604020002.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2602010009",
+      "sku": "2602010009",
+      "name": "过年红耳环",
+      "spec": "银镀金镶嵌锆石、蛋白石、红玉髓",
+      "description": "",
+      "category": "设计师系列-耳饰",
+      "unit": "对",
+      "image": "images/2602010009.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2602010003",
+      "sku": "2602010003",
+      "name": "灰色米珠戒指",
+      "spec": "灰色真多麻淡水珍珠",
+      "description": "",
+      "category": "设计师系列-戒指",
+      "unit": "个",
+      "image": "images/2602010003.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2601100021",
+      "sku": "2601100021",
+      "name": "闪光石项链",
+      "spec": "闪光石",
+      "description": "",
+      "category": "设计师系列-项链",
+      "unit": "条",
+      "image": "images/2601100021.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2601100020",
+      "sku": "2601100020",
+      "name": "中古风紫水晶项链",
+      "spec": "天然紫水晶",
+      "description": "",
+      "category": "设计师系列-项链",
+      "unit": "条",
+      "image": "images/2601100020.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2601100011",
+      "sku": "2601100011",
+      "name": "浮雕头像巴洛克耳环",
+      "spec": "银镀金镶嵌珍珠",
+      "description": "",
+      "category": "设计师系列-耳饰",
+      "unit": "对",
+      "image": "images/2601100011.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2512260015",
+      "sku": "2512260015",
+      "name": "灰珍珠银色手链",
+      "spec": "淡水真多麻灰珍珠",
+      "description": "",
+      "category": "设计师系列-手链、手镯",
+      "unit": "条",
+      "image": "images/2512260015.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2512260011",
+      "sku": "2512260011",
+      "name": "金色珍珠项链",
+      "spec": "淡水金珠",
+      "description": "",
+      "category": "设计师系列-项链",
+      "unit": "条",
+      "image": "images/2512260011.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2409200018",
+      "sku": "2409200018",
+      "name": "红扇子耳环",
+      "spec": "银镀金珐琅工艺镶嵌红刚玉",
+      "description": "",
+      "category": "设计师系列-耳饰",
+      "unit": "对",
+      "image": "images/2409200018.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2409200007",
+      "sku": "2409200007",
+      "name": "蓝玉髓珍珠手链",
+      "spec": "925银镶嵌蓝玉髓，淡水珍珠",
+      "description": "",
+      "category": "设计师手工制作系列",
+      "unit": "条",
+      "image": "images/2409200007.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2408130014",
+      "sku": "2408130014",
+      "name": "意大利设计凤尾戒指",
+      "spec": "银镀金镶嵌托帕石。意大利设计款，六层保色工艺",
+      "description": "",
+      "category": "意大利设计师联名系列",
+      "unit": "",
+      "image": "images/2408130014.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2305030025",
+      "sku": "2305030025",
+      "name": "唯爱永存",
+      "spec": "银镀金镶嵌珍珠红刚玉",
+      "description": "",
+      "category": "设计师系列-耳饰",
+      "unit": "对",
+      "image": "images/2305030025.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2309260004",
+      "sku": "2309260004",
+      "name": "肌力美",
+      "spec": "银镀金镶嵌粉水晶",
+      "description": "",
+      "category": "设计师系列-耳饰",
+      "unit": "对",
+      "image": "images/2309260004.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2307090001",
+      "sku": "2307090001",
+      "name": "海浪",
+      "spec": "银镀金镶嵌珍珠",
+      "description": "",
+      "category": "设计师系列-耳饰",
+      "unit": "对",
+      "image": "images/2307090001.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2023021045",
+      "sku": "2023021045",
+      "name": "公主的衣橱",
+      "spec": "银镀金拉丝工艺",
+      "description": "",
+      "category": "设计师系列-项链",
+      "unit": "条",
+      "image": "images/2023021045.jpg",
+      "source": "seed"
+    },
+    {
+      "id": "2023021020",
+      "sku": "2023021020",
+      "name": "玫瑰戒指",
+      "spec": "银镀金镶嵌锆石、珐琅工艺",
+      "description": "",
+      "category": "设计师系列-耳饰",
+      "unit": "对",
+      "image": "images/2023021020.jpg",
+      "source": "seed"
+    }
+  ]
+}

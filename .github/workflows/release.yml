@@ -1,0 +1,86 @@
+# 打 tag（如 v0.1.0）或手动 Run workflow 时，自动打包 Windows + macOS，并挂到 GitHub Release。
+# 说明：
+# - macOS 使用 macos-latest（Apple Silicon / aarch64）
+# - Windows 使用 windows-latest（x64）
+# - 未配置 Apple 公证 / Windows 代码签名；产物可本地安装，首次打开可能需「仍要打开」
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-tauri:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: macos-latest
+            rust_target: aarch64-apple-darwin
+            node_triple: aarch64-apple-darwin
+          - platform: windows-latest
+            rust_target: x86_64-pc-windows-msvc
+            node_triple: x86_64-pc-windows-msvc
+
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.rust_target }}
+
+      - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Install resource sidecars (cdp / ai / catbus)
+        shell: bash
+        run: |
+          set -euo pipefail
+          for dir in resources/cdp resources/ai resources/catbus; do
+            if [ -f "$dir/package.json" ]; then
+              echo "::group::npm install $dir"
+              (cd "$dir" && npm install --omit=dev)
+              echo "::endgroup::"
+            fi
+          done
+
+      - name: Fetch Node sidecar binary
+        run: node scripts/fetch-node-sidecar.mjs --triple ${{ matrix.node_triple }}
+
+      - name: Build Tauri app
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          projectPath: .
+          tagName: ${{ github.ref_type == 'tag' && github.ref_name || format('dev-{0}', github.sha) }}
+          releaseName: ${{ github.ref_type == 'tag' && github.ref_name || format('Dev build {0}', github.sha) }}
+          releaseBody: |
+            ## 安装包
+            - **Windows**：`.msi` / `.exe`（NSIS）
+            - **macOS**：`.dmg` / `.app`（Apple Silicon）
+
+            > 未做代码签名 / 公证。macOS 若提示无法打开：系统设置 → 隐私与安全性 → 仍要打开。
+          releaseDraft: true
+          prerelease: ${{ github.ref_type != 'tag' }}
+          args: --target ${{ matrix.rust_target }}

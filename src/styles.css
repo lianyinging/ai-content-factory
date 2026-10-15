@@ -1,0 +1,67 @@
+:root {
+  --app-bg: #f3f5f8;
+  --panel: #ffffff;
+  --sidebar-bg: #ffffff;
+  --text: #1f2329;
+  --muted: #8a919f;
+  --line: #e7ebf0;
+  --primary: #3b6cff;
+  --primary-soft: #eef3ff;
+  --soft: #f2f4f7;
+  --radius: 12px;
+  --el-color-primary: #3b6cff;
+  --el-border-radius-base: 10px;
+  --el-border-radius-round: 999px;
+  --color-border-2: var(--line);
+  --color-fill-1: var(--panel);
+  --color-fill-2: var(--soft);
+  --color-fill-3: var(--line);
+  --color-text-1: var(--text);
+  --color-text-2: #4e5969;
+  --color-text-3: var(--muted);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family:
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Noto Sans SC',
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  background: var(--app-bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Element primary align */
+.el-button--primary {
+  --el-button-bg-color: var(--primary);
+  --el-button-border-color: var(--primary);
+  --el-button-hover-bg-color: #2f5af0;
+  --el-button-hover-border-color: #2f5af0;
+}
+
+.el-menu {
+  --el-menu-active-color: var(--primary);
+  --el-menu-hover-bg-color: var(--soft);
+}
