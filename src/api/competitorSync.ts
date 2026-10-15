@@ -76,7 +76,7 @@ export async function syncCompetitorNote(
     }
     const item = parseItem(env)
     if (!item) {
-      const error = env.error?.message || '获取详情失败'
+      const error = '获取详情失败：响应无笔记数据'
       if (report) await reportCatbusError(env, error)
       return { ok: false, error }
     }

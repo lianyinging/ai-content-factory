@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, type Ref } from 'vue'
 import { listen, type UnlistenFn } from '@tauri-apps/api/event'
 import { ElMessage } from 'element-plus'
 import { aiComplete } from '@/api/ai'
@@ -781,9 +781,9 @@ function setIntervalSec(v: number) {
  * 页面会一直卡在「获客执行中」。
  */
 type AcqCtl = {
-  running: ReturnType<typeof ref<boolean>>
-  logs: ReturnType<typeof ref<AutoOpsLogEntry[]>>
-  lastResult: ReturnType<typeof ref<XhsAcqRunResult | null>>
+  running: Ref<boolean>
+  logs: Ref<AutoOpsLogEntry[]>
+  lastResult: Ref<XhsAcqRunResult | null>
   logSeq: number
   progressUn: UnlistenFn | null
   finishedUn: UnlistenFn | null

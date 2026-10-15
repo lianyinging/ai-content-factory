@@ -23,9 +23,7 @@ import {
 import { dashboardInsightConfigUpsert, type HotPost } from '@/api/dashboardInsight'
 import { mediaDisplaySrc } from '@/api/assets'
 import { useIndustryInsightStore } from '@/state/industryInsight'
-import { useLibraryAnalyzeStore } from '@/state/libraryAnalyze'
 import { useImageJobsStore } from '@/state/imageJobs'
-import { isPublishJobRunning } from '@/state/publishCdp'
 
 const router = useRouter()
 const PLATFORM = 'xhs'
@@ -42,13 +40,11 @@ const {
   searchAccount: insightAccount,
   searchNickname: insightNickname,
   searchQuery: insightSearchQuery,
-  statusText: insightStatus,
   refreshNow: insightRefresh,
   loadFromDb: insightLoad,
   setConfigLocal,
 } = insight
-const { hasActive: analyzeBusy, activeTitle: analyzeTitle } = useLibraryAnalyzeStore()
-const { hasActive: imageBusy, refresh: refreshImageJobs } = useImageJobsStore()
+const { refresh: refreshImageJobs } = useImageJobsStore()
 
 type PcAccount = {
   account: string
@@ -380,12 +376,9 @@ const sentinelDemo = createDemoLogLoop(
   ],
   '哨兵 Agent 日志已就绪 · 笔记监控展示动效',
 )
-const {
-  logs: sentinelLogs,
-  el: sentinelLogEl,
-  start: startSentinelLog,
-  stop: stopSentinelLog,
-} = sentinelDemo
+const { logs: sentinelLogs, el: sentinelLogEl, start: startSentinelLog, stop: stopSentinelLog } =
+  sentinelDemo
+void sentinelLogEl
 
 const dutyDemo = createDemoLogLoop(
   [
@@ -402,6 +395,7 @@ const dutyDemo = createDemoLogLoop(
   '值守 Agent 日志已就绪 · AI 客服展示动效',
 )
 const { logs: dutyLogs, el: dutyLogEl, start: startDutyLog, stop: stopDutyLog } = dutyDemo
+void dutyLogEl
 
 const scoutDemo = createDemoLogLoop(
   [
@@ -417,6 +411,7 @@ const scoutDemo = createDemoLogLoop(
   '拓客 Agent 日志已就绪 · AI 获客展示动效',
 )
 const { logs: scoutLogs, el: scoutLogEl, start: startScoutLog, stop: stopScoutLog } = scoutDemo
+void scoutLogEl
 
 const pcOk = computed(() => pcAccounts.value.filter((a) => a.loggedIn).length)
 const cdpOk = computed(() => cdpRows.value.filter((r) => r.cdpOnline && r.loggedIn).length)
@@ -424,8 +419,6 @@ const healthSummary = computed(
   () =>
     `${pcOk.value}/${pcAccounts.value.length} 搜索账号可用 · ${cdpOk.value}/${cdpRows.value.length} 桌面在线登录`,
 )
-
-const publishBusy = computed(() => isPublishJobRunning('xhs'))
 
 type HotAgentPhase = 'need_config' | 'need_account' | 'running' | 'error' | 'standby'
 
@@ -1050,8 +1043,6 @@ function buildTrendRaceOption(progress: number): echarts.EChartsOption {
     animation: false,
     tooltip: {
       trigger: 'axis',
-      // 吸附到整日刻度，避免停在插值点上
-      snap: true,
       formatter: (params: unknown) => {
         const arr = Array.isArray(params) ? params : []
         if (!arr.length || n <= 0) return ''

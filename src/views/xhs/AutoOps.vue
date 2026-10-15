@@ -303,7 +303,7 @@ watch(
 )
 
 watch(
-  () => acqLogs.value.length,
+  () => acqLogs.value?.length ?? 0,
   async () => {
     await nextTick()
     const el = acqLogEl.value
@@ -768,7 +768,7 @@ onMounted(() => {
                   <span class="cs-line__tag">[{{ entry.tag }}]</span>
                   <span class="cs-line__msg">{{ entry.message }}</span>
                 </div>
-                <div v-if="!acqLogs.length" class="cs-line tone-neutral cs-line--empty">
+                <div v-if="!(acqLogs?.length)" class="cs-line tone-neutral cs-line--empty">
                   <span class="cs-line__time">[--:--:--]</span>
                   <span class="cs-line__tag">[待命]</span>
                   <span class="cs-line__msg">控制台空闲 · 点击「开始获客」后实时输出执行链路</span>

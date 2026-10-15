@@ -1,5 +1,5 @@
 import { reactive } from 'vue'
-import { listen, type UnlistenFn } from '@tauri-apps/api/event'
+import { listen } from '@tauri-apps/api/event'
 import type { Platform } from '@/types/item'
 import { draftUpsert, parseTags, publishLogAdd } from '@/api/drafts'
 import {
@@ -60,7 +60,6 @@ type StartInput = {
 
 const jobs = reactive<Record<string, PublishCdpJob>>({})
 const liveSeqByKey: Record<string, number> = {}
-let cdpProgressUnlisten: UnlistenFn | null = null
 let cdpProgressListening = false
 
 const LIVE_LINE_CAP = 80
@@ -154,7 +153,7 @@ async function ensureCdpProgressListener() {
   if (cdpProgressListening) return
   cdpProgressListening = true
   try {
-    cdpProgressUnlisten = await listen<{
+    await listen<{
       step: string
       draftId: string
       action?: string
@@ -166,7 +165,6 @@ async function ensureCdpProgressListener() {
     })
   } catch {
     cdpProgressListening = false
-    cdpProgressUnlisten = null
   }
 }
 

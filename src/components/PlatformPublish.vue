@@ -496,7 +496,7 @@ watch(
       scrollLiveLogToBottom()
       return
     }
-    const justFinished = prev?.status === 'running' && job.status !== 'running'
+    const justFinished = prev?.status === 'running'
     applyJobToUi()
     scrollLiveLogToBottom()
     if (justFinished || !job.seen) {
