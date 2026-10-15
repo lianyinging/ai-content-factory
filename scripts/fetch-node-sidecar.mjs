@@ -8,7 +8,16 @@
  *   node scripts/fetch-node-sidecar.mjs --version 22.22.2
  *   node scripts/fetch-node-sidecar.mjs --triple aarch64-apple-darwin
  */
-import { createWriteStream, existsSync, mkdirSync, renameSync, rmSync, chmodSync } from 'node:fs'
+import {
+  chmodSync,
+  copyFileSync,
+  createWriteStream,
+  existsSync,
+  mkdirSync,
+  renameSync,
+  rmSync,
+  unlinkSync,
+} from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -71,6 +80,20 @@ async function download(url, dest) {
   await pipeline(res.body, createWriteStream(dest))
 }
 
+/** Windows CI 上 temp 与 workspace 常跨盘，rename 会报 EXDEV */
+function moveFile(src, dest) {
+  try {
+    renameSync(src, dest)
+  } catch (e) {
+    if (e && (e.code === 'EXDEV' || e.errno === -4037)) {
+      copyFileSync(src, dest)
+      unlinkSync(src)
+      return
+    }
+    throw e
+  }
+}
+
 async function main() {
   const { version, triple: tripleArg } = parseArgs(process.argv)
   const triple = tripleArg || hostTriple()
@@ -96,13 +119,13 @@ async function main() {
     execFileSync('tar', ['-xzf', archive, '-C', work], { stdio: 'inherit' })
     const nodeBin = join(work, base, 'bin', 'node')
     if (!existsSync(nodeBin)) throw new Error(`node binary missing in archive: ${nodeBin}`)
-    renameSync(nodeBin, outPath)
+    moveFile(nodeBin, outPath)
     chmodSync(outPath, 0o755)
   } else {
     execFileSync('unzip', ['-q', archive, '-d', work], { stdio: 'inherit' })
     const nodeBin = join(work, base, 'node.exe')
     if (!existsSync(nodeBin)) throw new Error(`node.exe missing in archive: ${nodeBin}`)
-    renameSync(nodeBin, outPath)
+    moveFile(nodeBin, outPath)
   }
 
   rmSync(work, { recursive: true, force: true })
